@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>نظام إدارة البيانات الجامعية الشامل</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #64748b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --border: #e2e8f0;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1000px; margin: auto; }
+
+        header { text-align: center; margin-bottom: 40px; }
+        header h1 { color: var(--primary-dark); font-size: 2.2rem; margin-bottom: 10px; }
+        header p { color: var(--secondary); }
+
+        .stage-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .stage-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .stage-header i {
+            background: var(--primary);
+            color: white;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 1.2rem;
+        }
+
+        .status-badge {
+            margin-right: auto;
+            font-size: 0.75rem;
+            background: #e2e8f0;
+            color: var(--secondary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .input-group { display: flex; flex-direction: column; gap: 8px; }
+        .input-group label { font-size: 0.9rem; font-weight: 600; color: var(--text-main); }
+
+        input, select {
+            padding: 12px 15px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            outline: none;
+            transition: 0.3s;
+            font-size: 0.95rem;
+            background-color: #fdfdfd;
+        }
+
+        input:focus, select:focus { 
+            border-color: var(--primary); 
+            background-color: white;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); 
+        }
+
+        .submit-container {
+            position: sticky;
+            bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: 0 -10px 25px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        button {
+            width: 100%;
+            padding: 18px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: 0.4s;
+        }
+
+        button:hover { background: var(--primary-dark); transform: translateY(-2px); }
+        button:disabled { background: var(--secondary); cursor: not-allowed; }
+
+        .card-saved { border-color: var(--success) !important; background: #f0fdf4; }
+        .badge-saved { background: var(--success) !important; color: white !important; }
+
+        @media (max-width: 600px) {
+            .form-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1><i class="fas fa-graduation-cap"></i> نظام المراحل الجامعية</h1>
+        <p>يرجى إكمال بيانات كل فرقة دراسية لضمان اعتماد الملف الأكاديمي</p>
+    </header>
+
+    <form id="universityForm">
+        
+        <section class="stage-card" id="card-1">
+            <div class="stage-header">
+                <i class="fas fa-user-plus"></i>
+                <h2>الفرقة الأولى (البيانات الأساسية)</h2>
+                <span class="status-badge">بانتظار الإدخال</span>
+            </div>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>الاسم بالكامل</label>
+                    <input type="text" name="name" required placeholder="الاسم رباعي">
+                </div>
+                <div class="input-group">
+                    <label>الرقم القومي</label>
+                    <input type="text" name="national_id" placeholder="14 رقم">
+                </div>
+                <div class="input-group">
+                    <label>اسم الجامعة</label>
+                    <input type="text" name="university_name" placeholder="الجامعة المقيد بها">
+                </div>
+                <div class="input-group">
+                    <label>الكلية</label>
+                    <input type="text" name="faculty" placeholder="الكلية">
+                </div>
+                <div class="input-group">
+                    <label>القسم</label>
+                    <input type="text" name="department" placeholder="القسم الدراسي">
+                </div>
+                <div class="input-group">
+                    <label>رقم جلوس الثانوية العامة</label>
+                    <input type="text" name="high_school_id" placeholder="رقم الجلوس السابق">
+                </div>
+            </div>
+        </section>
+
+        <section class="stage-card" id="card-2">
+            <div class="stage-header">
+                <i class="fas fa-id-badge"></i>
+                <h2>الفرقة الثانية (السجل الدراسي)</h2>
+                <span class="status-badge">بانتظار الإدخال</span>
+            </div>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>الرقم الجامعي (ID)</label>
+                    <input type="text" name="student_id" placeholder="الكود الجامعي الثابت">
+                </div>
+                <div class="input-group">
+                    <label>تقدير العام السابق</label>
+                    <select name="last_grade">
+                        <option value="">اختر التقدير</option>
+                        <option value="A">امتياز</option>
+                        <option value="B">جيد جداً</option>
+                        <option value="C">جيد</option>
+                        <option value="D">مقبول</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>عدد المواد الناجحة</label>
+                    <input type="number" name="passed_subjects" placeholder="عدد المواد">
+                </div>
+                <div class="input-group">
+                    <label>عدد المواد المتبقية (إن وجد)</label>
+                    <input type="number" name="remaining_subjects" placeholder="مواد الرسوب">
+                </div>
+                <div class="input-group">
+                    <label>حالة المصروفات الدراسية</label>
+                    <select name="payment_status">
+                        <option value="paid">تم الدفع بالكامل</option>
+                        <option value="partial">دفع جزئي</option>
+                        <option value="not_paid">لم يتم الدفع</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section class="stage-card" id="card-3">
+            <div class="stage-header">
+                <i class="fas fa-microscope"></i>
+                <h2>الفرقة الثالثة (التخصص والتدريب)</h2>
+                <span class="status-badge">بانتظار الإدخال</span>
+            </div>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>المعدل التراكمي (GPA)</label>
+                    <input type="text" name="gpa" placeholder="0.00 / 4.00">
+                </div>
+                <div class="input-group">
+                    <label>التخصص الدقيق</label>
+                    <input type="text" name="sub_major" placeholder="مثال: هندسة برمجيات">
+                </div>
+                <div class="input-group">
+                    <label>جهة التدريب الصيفي</label>
+                    <input type="text" name="training_org" placeholder="الشركة أو الهيئة">
+                </div>
+                <div class="input-group">
+                    <label>المقررات المسجلة حالياً</label>
+                    <input type="text" name="current_courses" placeholder="عدد الساعات أو المواد">
+                </div>
+                <div class="input-group">
+                    <label>رفع السيرة الذاتية (CV)</label>
+                    <input type="file" name="cv_file">
+                </div>
+            </div>
+        </section>
+
+        <section class="stage-card" id="card-4">
+            <div class="stage-header">
+                <i class="fas fa-user-graduate"></i>
+                <h2>الفرقة الرابعة (مشروع التخرج)</h2>
+                <span class="status-badge">بانتظار الإدخال</span>
+            </div>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>عنوان مشروع التخرج</label>
+                    <input type="text" name="project_title" placeholder="اسم المشروع المقترح">
+                </div>
+                <div class="input-group">
+                    <label>المعدل النهائي المتوقع</label>
+                    <input type="text" name="expected_grade" placeholder="التقدير العام التراكمي">
+                </div>
+                <div class="input-group">
+                    <label>جهة تدريب سنة التخرج</label>
+                    <input type="text" name="senior_training" placeholder="مكان التدريب الميداني">
+                </div>
+                <div class="input-group">
+                    <label>حالة التخرج</label>
+                    <select name="grad_status">
+                        <option>قيد التنفيذ</option>
+                        <option>مؤهل للتخرج</option>
+                        <option>متوقع دور ثان</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>رفع مقترح المشروع (PDF)</label>
+                    <input type="file" name="project_pdf">
+                </div>
+            </div>
+        </section>
+
+        <div class="submit-container">
+            <button type="submit" id="saveBtn">
+                <i class="fas fa-cloud-upload-alt"></i>
+                حفظ واعتماد جميع المراحل
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+    const form = document.getElementById('universityForm');
+    const saveBtn = document.getElementById('saveBtn');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // تفعيل وضع التحميل
+        saveBtn.disabled = true;
+        saveBtn.innerHTML = '<i class="fas fa-sync fa-spin"></i> جاري مزامنة البيانات مع السيرفر...';
+
+        // محاكاة إرسال البيانات
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        console.log("تم تجميع بيانات المراحل:", data);
+
+        setTimeout(() => {
+            saveBtn.disabled = false;
+            saveBtn.innerHTML = '<i class="fas fa-check-double"></i> تم الاعتماد بنجاح';
+            saveBtn.style.background = 'var(--success)';
+
+            // تحديث البطاقات
+            document.querySelectorAll('.stage-card').forEach(card => {
+                card.classList.add('card-saved');
+                const badge = card.querySelector('.status-badge');
+                badge.innerText = 'مكتمل ومؤرشف ✓';
+                badge.classList.add('badge-saved');
+            });
+
+            alert('تم حفظ كافة بيانات المراحل الجامعية الأربعة بنجاح في النظام.');
+
+            setTimeout(() => {
+                saveBtn.innerHTML = '<i class="fas fa-edit"></i> تعديل البيانات المرسلة';
+                saveBtn.style.background = 'var(--primary)';
+            }, 4000);
+
+        }, 2000);
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج تقديم</title>
+    <link rel="stylesheet" href="style11.css">
+</head>
+<body>
+
+    <div id="form-card" class="login-container">
+        <h2>تقديم</h2>
+        <div class="input-group"><input type="text" placeholder="اسم الطالب"></div>
+        <div class="input-group"><input type="text" placeholder="الرقم القومي"></div>
+        <div class="input-group"><input type="text" placeholder="النوع"></div>
+        <div class="input-group"><input type="text" placeholder="المجموع"></div>
+        <div class="input-group"><input type="text" placeholder="الشعبة"></div>
+        <div class="input-group"><input type="email" placeholder="البريد الإلكتروني"></div>
+        
+        <button class="login-btn" onclick="handleLogin()">login</button>
+    </div>
+<div id="success-card" class="login-container hidden">
+        <div style="font-size: 70px; margin-bottom: 20px;">✅</div>
+        <h2>تم بنجاح!</h2>
+        <p>لقد تم استلام بياناتك بنجاح. سنراجع طلبك ونرد عليك في أقرب وقت.</p>
+        <button class="login-btn" onclick="location.reload()">إغلاق</button>
+    </div>
+
+    <script>
+        // --- JavaScript: وظيفة التبديل ---
+        function handleLogin() {
+            const form = document.getElementById('form-card');
+            const success = document.getElementById('success-card');
+
+            // 1. إخفاء المربع الأول بحركة ناعمة
+            form.style.opacity = "0";
+            form.style.transform = "scale(0.9)";
+            
+            setTimeout(() => {
+                form.style.display = "none"; // إزالة من الصفحة
+                
+                // 2. إظهار المربع الثاني
+                success.style.display = "block";
+                
+                // 3. تفعيل الأنيميشن للمربع الثاني بعد ظهوره مباشرة
+                setTimeout(() => {
+                    success.classList.remove('hidden');
+                    success.style.opacity = "1";
+                    success.style.transform = "scale(1)";
+                }, 50);
+            }, 500); // 500 ملي ثانية تساوي وقت الـ transition في CSS
+        }
+    </script>
+
+</body>
+</html>

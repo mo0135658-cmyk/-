@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+}
+
+a{
+text-decoration: none;
+color: inherit;
+}
+.card{
+text-decoration: none;
+color: inherit;
+display: block;
+}
+body {
+    /* خلفية متدرجة حديثة */
+    background:linear-gradient(135deg,  #1a1a2e 0%, #304377 50%, #3e7dca 100% );
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-overlay {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+.main-title {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    text-shadow: 0 4px 10px rgba(52, 41, 84, 0.3);
+}
+
+/* الحاوية الزجاجية الكبيرة */
+.glass-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px); /* تأثير الضباب */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 48px;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+}
+
+.cards-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* تصميم الكروت */
+.card {
+    background: #1a1a2e; /* لون داكن كقاعدة */
+    width: 150px;
+    height: 170px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+    
+}
+
+
+.card .icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+/* تأثير عند المرور بالماوس (Hover) */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ألوان مخصصة لكل كارت لتعطي حيوية (اختياري) */
+.card-1:hover { background: linear-gradient(145deg, #2e8b57, #1a1a2e); }
+.card-2:hover { background: linear-gradient(145deg, #b8860b, #1a1a2e); }
+.card-3:hover { background: linear-gradient(145deg, #6256aa, #1a1a2e); }
+.card-4:hover { background: linear-gradient(145deg, #4682b4, #1a1a2e); }
+.card-5:hover { background: linear-gradient(145deg, #8b0000, #1a1a2e); }
+.card-6:hover {background: linear-gradient(145deg,  #d5236d, #1a1a2e); }

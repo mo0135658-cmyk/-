@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من نحن - المنصة الذكية</title>
+    <style>
+        /* تعريف المتغيرات للألوان */
+        :root {
+            --black: #1e293b;
+            --blue: #38bdf8;
+            --white: #ffffff;
+            --bg-light: #f8fafc;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* تنسيق صفحة من نحن الرئيسي */
+        .about-section {
+            padding: 5rem 7%;
+            width: 100%;
+            min-height: 100vh;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 1. البانر العلوي */
+        .top-banner {
+            background: linear-gradient(135deg, var(--black) 0%, #0f172a 100%);
+            color: var(--white);
+            padding: 5rem 3rem;
+            border-radius: 30px;
+            text-align: center;
+            margin-bottom: 4rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .top-banner h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 2rem;
+            color: var(--blue);
+        }
+
+        .top-banner p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+            color: #cbd5e1;
+        }
+
+        /* 2. كروت الرؤية والرسالة */
+        .info-row {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .info-card {
+            flex: 1;
+            min-width: 300px;
+            background: var(--white);
+            padding: 3.5rem 2.5rem;
+            border-radius: 25px;
+            text-align: center;
+            border-bottom: 8px solid var(--blue);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .info-card h3 {
+            font-size: 2rem;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* 3. كلمة العميد */
+        .dean-box {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            background: var(--white);
+            padding: 4rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            flex-wrap: wrap;
+        }
+
+        .dean-img {
+            flex: 1;
+            text-align: center;
+            min-width: 250px;
+        }
+
+        .dean-img img {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 25px;
+            border: 8px solid var(--bg-light);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .dean-text {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .dean-text h2 {
+            font-size: 2.2rem;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .dean-text p {
+            font-size: 1.2rem;
+            color: #334155;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* الهواتف الذكية */
+        @media (max-width: 768px) {
+            .about-section { padding: 2rem 5%; }
+            .top-banner { padding: 3rem 1.5rem; }
+            .dean-box { padding: 2rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="about-section">
+        <div class="top-banner">
+            <h1>من نحن!</h1>
+
+            <p>#نحن مجموعة من طلاب كلية التربية، قمنا بتطوير مشروع "منصة إدارة شؤون الطلاب و خدماتهم" بهدف تقديم نظام إلكتروني متكامل يسهم في تحسين الخدمات الأكاديمية والإدارية المقدمة للطلاب. جاءت فكرة المشروع استجابة للحاجة إلى التحول الرقمي وتسهيل الإجراءات التي يمر بها الطالب خلال رحلته الدراسية، بدءًا من التقديم وحتى متابعة حالته الأكاديمية والمالية.
+يعتمد المشروع على تصميم واجهات تفاعلية سهلة الاستخدام تتيح للطلاب متابعة بياناتهم الشخصية، وحالة الطلبات، والمقررات الدراسية، والرسوم الجامعية، بالإضافة إلى متابعة مراحل البحث العلمي بشكل منظم وواضح. كما يهدف النظام إلى تقليل الاعتماد على الإجراءات الورقية وتوفير الوقت والجهد لكل من الطلاب والإدارة.
+نسعى من خلال هذا المشروع إلى توظيف التقنيات الحديثة في تطوير بيئة تعليمية أكثر كفاءة ومرونة، بما يتوافق مع توجهات التحول الرقمي ورؤية المؤسسات التعليمية نحو تقديم خدمات إلكترونية متطورة تلبي احتياجات المستفيدين.</p>
+        </div>
+
+        <div class="info-row">
+            <div class="info-card">
+                <h3>الرؤية</h3>
+                <p>التميز والريادة في تقديم تعليم نوعي يواكب العصر ويخدم المجتمع، والتحول الكامل نحو البيئة الرقمية الذكية.</p>
+            </div>
+            <div class="info-card">
+                <h3>الرسالة</h3>
+                <p>إعداد خريج مبدع ومؤهل لسوق العمل من خلال بيئة تعليمية ذكية تحفز على الابتكار والبحث العلمي.</p>
+            </div>
+        </div>
+
+        <div class="dean-box">
+            <div class="dean-img">
+                <img src="https://via.placeholder.com/300x350" alt="العميد"> 
+                <p style="font-size: 1.3rem; font-weight: bold; margin-top: 1.5rem; color: var(--black);">أ.د. عميد الكلية</p>
+            </div>
+            <div class="dean-text">
+                <h2>كلمة عميد الكلية</h2>
+                <p>"أبنائي الطلاب، نرحب بكم في رحاب كليتنا العريقة. إن هدفنا الأول هو تمكينكم من الحصول على أرقى الخدمات التعليمية والبدء في مسيرتكم الجامعية بأفضل الوسائل التكنولوجية المتاحة."</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

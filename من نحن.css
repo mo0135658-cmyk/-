@@ -1,0 +1,100 @@
+:root {
+    --navy-color: #001f3f;
+    --cream-bg: #fdfaf5; /* لون كريمي حسب تفضيلاتك */
+    --grey-text: #555;
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--cream-bg);
+    margin: 0;
+    padding: 0;
+    color: var(--navy-color);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Navbar */
+.main-header {
+    background-color: var(--navy-color);
+    color: white;
+    padding: 15px 50px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+/* Glassmorphism Card (About Us) */
+.about-card {
+    background: rgba(0, 31, 63, 0.95); /* كحلي داكن */
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+.about-card h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+/* Grid Layout (Vision & Mission) */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.info-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.info-card h3 {
+    color: var(--navy-color);
+    margin-bottom: 10px;
+}
+
+/* Dean Section */
+.dean-section {
+    background: white;
+    margin-top: 30px;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--navy-color);
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.btn-primary:hover {
+    background-color: #003366;
+}

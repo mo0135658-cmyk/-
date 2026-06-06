@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منظومة شؤون الخريجين | جامعة المنصورة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #34495e;
+            --accent: #27ae60;
+            --bg: #f4f7f6;
+            --white: #ffffff;
+            --shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 20px;
+            color: var(--primary);
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* --- نظام المربعات (Cards) --- */
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border-top: 5px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: var(--secondary);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .card-title i {
+            color: var(--accent);
+        }
+
+        /* --- شبكة الحقول (Grid) --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        input, select {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 8px rgba(39, 174, 96, 0.2);
+        }
+
+        /* --- الملاحظات --- */
+        .notes-section {
+            background: #fff9e6;
+            border-right: 5px solid #f1c40f;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .notes-section h4 {
+            margin-top: 0;
+            color: #856404;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notes-section ul {
+            margin-bottom: 0;
+            padding-right: 20px;
+            line-height: 1.8;
+        }
+
+        /* --- زر الإرسال --- */
+        .submit-area {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn-submit {
+            background: var(--accent);
+            color: white;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .btn-submit:hover {
+            background: #219150;
+            transform: scale(1.05);
+        }
+
+        /* إخفاء قسم التجنيد في حالة الإناث */
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <header>
+        <h1>بوابة الخريجين الرقمية</h1>
+        <p>جامعة المنصورة - كلية التربية النوعية</p>
+    </header>
+
+    <form id="graduateForm">
+        
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-user-graduate"></i> البيانات الأساسية والتقدير
+            </div>
+            <div class="grid">
+                <div class="form-group">
+                    <label>الاسم الكامل رباعي:</label>
+                    <input type="text" placeholder="أدخل الاسم الكامل" required>
+                </div>
+                <div class="form-group">
+                    <label>الرقم القومي (14 رقم):</label>
+                    <input type="text" maxlength="14" placeholder="أدخل 14 رقم" required>
+                </div>
+                <div class="form-group">
+                    <label>التقدير العام:</label>
+                    <select required>
+                        <option value="">اختر التقدير...</option>
+                        <option>امتياز مع مرتبة الشرف</option>
+                        <option>امتياز</option>
+                        <option>جيد جداً مع مرتبة الشرف</option>
+                        <option>جيد جداً</option>
+                        <option>جيد</option>
+                        <option>مقبول</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>النسبة المئوية:</label>
+                    <input type="text" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label>النوع:</label>
+                    <select id="gender" onchange="checkGender()" required>
+                        <option value="male">ذكر</option>
+                        <option value="female">أنثى</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="militaryCard">
+            <div class="card-title">
+                <i class="fas fa-shield-alt"></i> محو الأمية والموقف التجنيدي
+            </div>
+            <div class="grid">
+                <div class="form-group">
+                    <label>رقم شهادة محو الأمية:</label>
+                    <input type="text" placeholder="أدخل رقم الشهادة">
+                </div>
+                <div class="form-group military1">
+                    <label>الموقف من التجنيد:</label>
+                    <select>
+                        <option>أدى الخدمة</option>
+                        <option>إعفاء نهائي</option>
+                        <option>تأجيل مؤقت</option>
+                    </select>
+                </div>
+                <div class="form-group military2">
+                    <label>إفادة الجيش (رقم الوثيقة):</label>
+                    <input type="text" placeholder="رقم الوثيقة العسكرية">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-file-invoice-dollar"></i> الرسوم والمستندات الورقية
+            </div>
+            <div class="grid">
+                <div class="form-group">
+                    <label>رقم إيصال سداد (700 جنية):</label>
+                    <input type="text" placeholder="رقم الإيصال" required>
+                </div>
+                <div class="form-group">
+                    <label>رفع صورة شخصية للمراجعة:</label>
+                    <input type="file" accept="image/*" required>
+                </div>
+            </div>
+
+            <div class="notes-section">
+                <h4><i class="fas fa-info-circle"></i> ملاحظات هامة جداً:</h4>
+                <ul>
+                    <li>يرجى التأكد من كتابة الاسم رباعياً كما هو موضح ببطاقة الرقم القومي.</li>
+                    <li>يتم إحضار أصل إيصال السداد عند استلام الشهادة من الكلية.</li>
+                    <li>الصور الشخصية المرفوعة يجب أن تكون حديثة وواضحة (خلفية بيضاء).</li>
+                    <li>في حالة الإناث، لا يطلب بيانات الموقف التجنيدي.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="submit-area">
+            <button type="submit" class="btn-submit">حفظ وإرسال البيانات</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function checkGender() {
+        const gender = document.getElementById('gender').value;
+        const militaryFields = document.querySelectorAll('.military-only');
+        
+        militaryFields.forEach(field => {
+            if (gender === 'female') {
+                field.style.display = 'none';
+            } else {
+                field.style.display = 'flex';
+            }
+        });
+    }
+
+    document.getElementById('graduateForm').onsubmit = function(e) {
+        e.preventDefault();
+        alert('تم حفظ بيانات الخريج بنجاح وجاري المراجعة من قبل شؤون الطلاب.');
+    }
+</script>
+
+</body>
+</html>

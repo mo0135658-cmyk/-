@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منظومة تسجيل المقررات - التصميم الهادئ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #5a7d9a; /* أزرق هادي */
+            --light-blue: #eef2f6;   /* أزرق فاتح جداً للخلفيات */
+            --bg-gray: #f4f4f7;      /* رصاصي فاتح جداً */
+            --text-dark: #334155;    /* رصاصي غامق للنصوص */
+            --white: #ffffff;
+            --border-color: #d1d5db;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-gray);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1050px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        /* رأس الصفحة - Header */
+        .header {
+            background-color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--primary-blue);
+        }
+
+        .header h1 {
+            margin: 0;
+            color: var(--primary-blue);
+            font-weight: 900;
+            font-size: 2rem;
+        }
+
+        .header p {
+            color: #64748b;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .content { padding: 35px; }
+
+        /* بطاقات البيانات الشخصية */
+        .student-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .info-card {
+            background: var(--light-blue);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border-right: 5px solid var(--primary-blue);
+        }
+
+        .info-card label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--primary-blue);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .info-card span {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* الجدول الأنيق */
+        .table-section {
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 15px;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--white);
+        }
+
+        tr:last-child td { border: none; }
+
+        tr:hover td { background-color: #f9fafb; }
+
+        /* الـ Checkbox بتصميم أزرق هادي */
+        .check-box {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            accent-color: var(--primary-blue);
+        }
+
+        /* ملخص التسجيل */
+        .summary-footer {
+            margin-top: 30px;
+            padding: 25px;
+            background-color: var(--bg-gray);
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .hours-box {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .hours-box span {
+            color: var(--primary-blue);
+            background: var(--white);
+            padding: 5px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin: 0 5px;
+        }
+
+        /* الأزرار */
+        .btn-confirm {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .btn-confirm:hover {
+            background-color: #4a6a85;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        /* التنبيهات */
+        .limit-error { color: #dc2626 !important; animation: pulse 1s infinite; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+        @media (max-width: 600px) {
+            .summary-footer { flex-direction: column; gap: 20px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="header">
+        <h1>نظام تسجيل المقررات الدراسية</h1>
+        <p>بوابة الطالب الإلكترونية - الفصل الدراسي الحالي</p>
+    </div>
+
+    <div class="content">
+        <div class="student-info-grid">
+            <div class="info-card"><label>الاسم</label><span>أحمد محمد العلي</span></div>
+            <div class="info-card"><label>الرقم الجامعي</label><span>20241099</span></div>
+            <div class="info-card"><label>الكلية</label><span>كلية التربية</span></div>
+            <div class="info-card"><label>القسم</label><span>تكنولوجيا التعليم</span></div>
+        </div>
+
+        <div class="table-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>اختيار</th>
+                        <th>المقرر الدراسي</th>
+                        <th>الساعات</th>
+                        <th>أستاذ المادة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" class="check-box" data-hrs="3" onchange="calc()"></td>
+                        <td>مناهج البحث التربوي</td>
+                        <td>3 ساعات</td>
+                        <td>د. خالد سليم</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="check-box" data-hrs="3" onchange="calc()"></td>
+                        <td>الإحصاء المتقدم</td>
+                        <td>3 ساعات</td>
+                        <td>د. مريم يوسف</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="check-box" data-hrs="2" onchange="calc()"></td>
+                        <td>مهارات التفكير الإبداعي</td>
+                        <td>2 ساعة</td>
+                        <td>د. سامر إبراهيم</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="check-box" data-hrs="4" onchange="calc()"></td>
+                        <td>تطبيقات الذكاء الاصطناعي</td>
+                        <td>4 ساعات</td>
+                        <td>د. ليلى حسن</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="summary-footer">
+            <div class="hours-box">
+                مجموع الساعات: <span id="total-hrs">0</span> من 12 ساعة
+            </div>
+            <div id="status-text" style="font-weight: 600;">يرجى اختيار المقررات</div>
+            <button class="btn-confirm" onclick="sendData()">تأكيد التسجيل</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function calc() {
+        const checks = document.querySelectorAll('.check-box');
+        const totalDisp = document.getElementById('total-hrs');
+        const statusText = document.getElementById('status-text');
+        let total = 0;
+
+        checks.forEach(c => { if(c.checked) total += parseInt(c.dataset.hrs); });
+
+        totalDisp.innerText = total;
+
+        if (total > 12) {
+            totalDisp.classList.add('limit-error');
+            statusText.innerText = "⚠️ تجاوزت الحد المسموح";
+            statusText.style.color = "#dc2626";
+        } else if (total > 0) {
+            totalDisp.classList.remove('limit-error');
+            statusText.innerText = "✅ الساعات مختارة بشكل صحيح";
+            statusText.style.color = "#059669";
+        } else {
+            statusText.innerText = "يرجى اختيار المقررات";
+            statusText.style.color = "var(--text-dark)";
+        }
+    }
+
+    async function sendData() {
+        const total = parseInt(document.getElementById('total-hrs').innerText);
+        if(total === 0) return alert("يرجى اختيار مادة واحدة على الأقل!");
+        if(total > 12) return alert("عذراً، لا يمكنك تجاوز 12 ساعة.");
+
+        // هنا يتم الربط مع الباك إند كما شرحنا سابقاً
+        alert("🚀 جاري إرسال طلبك لعدد " + total + " ساعة...");
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دفع المقررات الدراسية </title>
+    <link rel="stylesheet" href="styleمقررات.css">
+</head>
+<body>
+
+<div class="container">
+    <div id="payment-form">
+        <h2>دفع المقررات  الدراسية</h2>
+        
+        <div class="form-group">
+            <label>اسم الطالب:</label>
+            <input type="text" id="studentName" placeholder="أدخل الاسم الرباعي">
+        </div>
+
+        <div class="form-group">
+            <label>الفرقة الدراسية:</label>
+            <select id="yearLevel" onchange="updateAmount()">
+                <option value="">اختر الفرقة</option>
+                <option value="1100">الفرقة الأولى (1100 جنيه)</option>
+                <option value="1300">الفرقة الثانية (1300 جنيه)</option>
+                <option value="1500">الفرقة الثالثة (1500 جنيه)</option>
+                <option value="1700">الفرقة الرابعة (1700 جنيه)</option>
+            </select>
+        </div>
+
+        <div class="amount-box" id="amountDisplay">المبلغ المطلوب: 0 جنيه</div>
+
+        <div class="payment-methods">
+            <div class="method">
+                <img src="5769606964211027967_109.jpg" alt="فوري">
+                <input type="text" placeholder="رقم الدفع">
+                <input type="text" placeholder="رقم المرسل إليه">
+            </div>
+            <div class="method">
+                <img src="5769606964211027968_109.jpg" alt="انستا باي">
+                <input type="text" placeholder="رقم الدفع">
+                <input type="text" placeholder="رقم المرسل إليه">
+            </div>
+        </div>
+
+        <button onclick="processPayment()">إتمام عملية الدفع</button>
+    </div>
+
+    <div id="success-message">
+        <div class="success-icon">✔</div>
+        <h3>تم الدفع بنجاح!</h3>
+        <p>شكراً لك، تم استلام بياناتك بنجاح.</p>
+    </div>
+</div>
+
+<script>
+    // وظيفة تحديث المبلغ
+    function updateAmount() {
+        const select = document.getElementById('yearLevel');
+        const amountDisplay = document.getElementById('amountDisplay');
+        const value = select.value;
+        amountDisplay.innerText = value ? "المبلغ المطلوب: " + value + " جنيه" : "المبلغ المطلوب: 0 جنيه";
+    }
+
+    // وظيفة إتمام الدفع
+    function processPayment() {
+        const name = document.getElementById('studentName').value;
+        if(name.trim() === "") {
+            alert("من فضلك أدخل اسم الطالب أولاً");
+            return;
+        }
+        // إخفاء النموذج وإظهار الرسالة
+        document.getElementById('payment-form').style.display = 'none';
+        document.getElementById('success-message').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

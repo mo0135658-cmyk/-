@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استمارة بيانات الطالب</title>
+    
+    <style>
+        /* 1. الخط */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700&display=swap');
+
+        /* 2. الألوان */
+        :root {
+            --primary: #28566b;
+            --accent: #5bceeb;
+            --gold: #2e37ac;
+            --bg: #d7d8da;
+            --success: #10b981;
+        }
+
+        /* 3. الإعدادات العامة */
+        body {
+            font-family: 'Noto Kufi Arabic', sans-serif;
+            background-color: var(--bg);
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            margin: 0;
+            direction: rtl;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 900px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(74, 170, 235, 0.377);
+            border-top: 6px solid var(--primary);
+        }
+
+        h2 { color: var(--primary); text-align: center; margin-bottom: 30px; }
+
+        fieldset {
+            border: none;
+            padding: 20px;
+            margin-bottom: 25px;
+            background: #fdfdfd;
+            border-radius: 12px;
+            border-right: 4px solid var(--gold);
+        }
+
+        legend { font-weight: 700; color: var(--gold); padding: 0 10px; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .field { display: flex; flex-direction: column; }
+        .full-width { grid-column: span 3; }
+
+        label { font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; color: var(--primary); }
+
+        input, select {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        /* تغيير الإطار عند الضغط */
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent) !important;
+            box-shadow: 0 0 0 4px rgba(91, 206, 235, 0.15) !important;
+        }
+
+        /* 4. زر الحفظ */
+        .submit-btn {
+            display: block;
+            width: 100%;
+            margin-top: 30px;
+            padding: 15px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            font-size: 1.1rem; 
+            font-weight: 700;
+            font-family: inherit;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(42, 56, 184, 0.301);
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+            box-shadow: 0 6px 15px rgba(32, 104, 197, 0.2);
+        }
+
+        /* استجابة الموبايل */
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <form id="studentForm">
+        <h2>إدخال بيانات الطالب الأساسية</h2>
+
+        <fieldset>
+            <legend>1. البيانات الأساسية (غير قابلة للتعديل لاحقاً)</legend>
+            <div class="grid">
+                <div class="field">
+                    <label>الاسم بالكامل (عربي)</label>
+                    <input type="text" id="nameAr" placeholder="مطابق لشهادة الميلاد" required>
+                </div>
+                <div class="field">
+                    <label>الاسم بالكامل (إنجليزي)</label>
+                    <input type="text" id="nameEn" placeholder="Full Name as in Passport" required>
+                </div>
+                <div class="field">
+                    <label>الرقم القومي / رقم الجواز</label>
+                    <input type="text" maxlength="14" required>
+                </div>
+                <div class="field">
+                    <label>الجنسية</label>
+                    <input type="text" required>
+                </div>
+                <div class="field">
+                    <label>تاريخ الميلاد</label>
+                    <input type="date" required>
+                </div>
+                <div class="field">
+                    <label>النوع</label>
+                    <select>
+                        <option value="male">ذكر</option>
+                        <option value="female">أنثى</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>2. بيانات التواصل</legend>
+            <div class="grid">
+                <div class="field">
+                    <label>رقم الموبايل</label>
+                    <input type="tel" required>
+                </div>
+                <div class="field">
+                    <label>رقم الواتساب</label>
+                    <input type="tel">
+                </div>
+                <div class="field">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" required>
+                </div>
+                <div class="field full-width">
+                    <label>عنوان السكن التفصيلي (المحافظة/الحي/الشارع)</label>
+                    <input type="text" required>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>3. البيانات الأكاديمية</legend>
+            <div class="grid">
+                <div class="field">
+                    <label>نوع الشهادة الثانوية</label>
+                    <select>
+                        <option>عامة</option>
+                        <option>أزهرية</option>
+                        <option>دبلومة أمريكية</option>
+                        <option>أخرى</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>سنة الحصول على الشهادة</label>
+                    <input type="number" min="2020" max="2026">
+                </div>
+                <div class="field">
+                    <label>رقم الجلوس</label>
+                    <input type="text" required>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>4. بيانات ولي الأمر</legend>
+            <div class="grid">
+                <div class="field">
+                    <label>اسم ولي الأمر</label>
+                    <input type="text" required>
+                </div>
+                <div class="field">
+                    <label>رقم هاتف ولي الأمر</label>
+                    <input type="tel" required>
+                </div>
+                <div class="field">
+                    <label>صلة القرابة</label>
+                    <input type="text" placeholder="أب، أم، إلخ">
+                </div>
+            </div>
+        </fieldset>
+
+        <button type="submit" class="submit-btn">تأكيد وحفظ البيانات</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('studentForm').addEventListener('submit', function(event) {
+        // منع الصفحة من التحديث عند الإرسال
+        event.preventDefault();
+
+        // جلب اسم الطالب للتأكيد
+        const studentName = document.getElementById('nameAr').value;
+
+        // محاكاة عملية الحفظ
+        if(studentName) {
+            alert('تم حفظ بيانات الطالب: ' + studentName + ' بنجاح!');
+            // هنا يمكنك إضافة كود لإرسال البيانات للسيرفر (Fetch API)
+            console.log("Form Submitted Successfully");
+        } else {
+            alert('يرجى التأكد من ملء الحقول المطلوبة');
+        }
+    });
+</script>
+
+</body>
+</html>

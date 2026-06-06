@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المنصة الذكية - تحديث البيانات</title>
+    <style>
+        :root {
+            --primary: #63f184;
+            --secondary: #a855f7;
+            --bg: #425d9c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            /* خلفية متدرجة متحركة */
+            background: radial-gradient(circle at top right, #EDEDCE, transparent),
+                        radial-gradient(circle at bottom left, #054152c2, transparent),
+                        radial-gradient(circle at center, #269dd4b4, transparent),
+                        var(--bg)
+        }
+
+        /* حاوية الكارت مع تأثير الزجاج */
+        .glass-card {
+            background: rgba(2, 4, 96, 0.796);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            width: 100%;
+            max-width: 500px;
+            padding: 70px;
+            border-radius: 60px;
+            text-align: center;
+            border: 6px solid #EDEDCE;
+            box-shadow: 0 40px 50px rgba(9, 5, 5, 0.5);
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* أيقونة المستخدم المتحركة */
+        .avatar-glow {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            font-weight: bold;
+            margin: 0 auto 30px;
+            box-shadow: 0 0 30px rgba(147, 148, 235, 0.4);
+            transform: rotate(-10deg);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover .avatar-glow {
+            transform: rotate(0deg) scale(1.1);
+        }
+
+        .title {
+            color: white;
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        /* حقل إدخال الإيميل المطور */
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .modern-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 20px;
+            border-radius: 16px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+            text-align: center;
+            direction: ltr;
+        }
+
+        .modern-input:focus {
+            border-color: var(--primary);
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+        }
+
+        /* زر التأكيد */
+        .btn-shiny {
+            background: white;
+            color: var(--bg);
+            padding: 16px;
+            border-radius: 16px;
+            border: none;
+            width: 100%;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-shiny:hover {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* شاشة النجاح */
+        .success-state {
+            display: none;
+            color: #4ade80;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .check-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card" id="mainCard">
+        <div id="formContent">
+            <div class="avatar-glow" id="initial">؟</div>
+            <h2 class="title">تحديث الهوية الرقمية</h2>
+            <p class="subtitle">أدخل بريدك الإلكتروني لربطه بالمنصة</p>
+            
+            <div class="input-wrapper">
+                <input type="email" 
+                       id="userEmail" 
+                       class="modern-input" 
+                       placeholder="name@example.com"
+                       oninput="handleTyping()">
+            </div>
+
+            <button class="btn-shiny" onclick="confirmData()">
+                تأكيد وحفظ البيانات
+            </button>
+        </div>
+
+        <div class="success-state" id="successMsg">
+            <div class="check-icon">✨</div>
+            <h2>تم التوثيق بنجاح</h2>
+            <p id="finalEmail" style="color: #94a3b8; margin-top: 10px;"></p>
+            <button class="btn-shiny" style="margin-top: 20px; background: rgba(255,255,255,0.1); color: white;" onclick="resetForm()">تعديل</button>
+        </div>
+    </div>
+
+    <script>
+        // دالة لتحديث الحرف الأول أثناء الكتابة
+        function handleTyping() {
+            const emailInput = document.getElementById('userEmail').value;
+            const initialDiv = document.getElementById('initial');
+            
+            if (emailInput.length > 0) {
+                initialDiv.textContent = emailInput.charAt(0).toUpperCase();
+            } else {
+                initialDiv.textContent = "؟";
+            }
+        }
+
+        // دالة التأكيد والحفظ
+        function confirmData() {
+            const email = document.getElementById('userEmail').value;
+            
+            if (email.includes('@') && email.length > 5) {
+                // حفظ في الذاكرة المحلية
+                localStorage.setItem('userEmail', email);
+                
+                // إظهار رسالة النجاح
+                document.getElementById('formContent').style.display = 'none';
+                document.getElementById('successMsg').style.display = 'block';
+                document.getElementById('finalEmail').textContent = email;
+            } else {
+                alert("يرجى إدخال بريد إلكتروني صحيح");
+            }
+        }
+
+        // دالة لإعادة التعديل
+        function resetForm() {
+            document.getElementById('formContent').style.display = 'block';
+            document.getElementById('successMsg').style.display = 'none';
+        }
+
+        // التحقق عند فتح الصفحة إذا كان هناك بريد محفوظ مسبقاً
+        window.onload = function() {
+            const saved = localStorage.getItem('userEmail');
+            if (saved) {
+                document.getElementById('userEmail').value = saved;
+                handleTyping();
+            }
+        }
+    </script>
+
+</body>
+</html>

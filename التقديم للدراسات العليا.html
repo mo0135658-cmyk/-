@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منظومة التقديم الموحدة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --personal-clr: #00b4d8;
+            --edu-clr: #7209b7;
+            --prog-clr: #f72585;
+            --work-clr: #fb8500;
+            --doc-clr: #2ec4b6;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 20px;
+            color: #1e293b;
+        }
+
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            animation: fadeInPage 0.8s ease-out;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 { margin: 0; font-size: 1.8rem; font-weight: 900; }
+
+        .form-content { padding: 30px; }
+
+        .section {
+            margin-bottom: 35px;
+            padding: 20px;
+            border-radius: 18px;
+            border-right: 8px solid;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover { transform: translateY(-5px); }
+
+        /* الألوان والأنيميشن لكل قسم */
+        .s-personal { border-right-color: var(--personal-clr); background: #f0faff; animation: slideR 0.6s ease; }
+        .s-edu { border-right-color: var(--edu-clr); background: #f8f0ff; animation: zoom 0.8s ease; }
+        .s-prog { border-right-color: var(--prog-clr); background: #fff0f6; animation: slideL 1s ease; }
+        .s-work { border-right-color: var(--work-clr); background: #fff8f0; animation: fadeIn 1.2s ease; }
+        .s-docs { border-right-color: var(--doc-clr); background: #f0fffb; animation: slideUp 1.4s ease; }
+
+        .section-title {
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .field { margin-bottom: 15px; }
+        label { display: block; font-weight: 700; margin-bottom: 6px; font-size: 0.9rem; color: #475569; }
+        
+        input, select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-family: inherit;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        input:focus { border-color: #1e293b; outline: none; background: #fff; }
+
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            background: #1e293b;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover { background: #000; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        /* رسالة النجاح */
+        #success-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .success-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 350px;
+            animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Animations */
+        @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideR { from { transform: translateX(50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideL { from { transform: translateX(-50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes zoom { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes pop { from { transform: scale(0.5); } to { transform: scale(1); } }
+
+        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="header">
+        <h1>نموذج التقديم للدراسات العليا</h1>
+        <p>يرجى ملء البيانات بدقة لضمان مراجعة طلبك</p>
+    </div>
+
+    <form class="form-content" onsubmit="event.preventDefault(); document.getElementById('success-overlay').style.display='flex';">
+        
+        <div class="section s-personal">
+            <div class="section-title" style="color: var(--personal-clr);">👤 1. البيانات الشخصية</div>
+            <div class="grid">
+                <div class="field"><label>الاسم رباعي</label><input type="text" required></div>
+                <div class="field"><label>الرقم القومي</label><input type="text" maxlength="14" required></div>
+            </div>
+            <div class="grid">
+                <div class="field"><label>تاريخ الميلاد</label><input type="date" required></div>
+                <div class="field"><label>محل الميلاد</label><input type="text"></div>
+            </div>
+            <div class="field"><label>العنوان بالكامل</label><input type="text"></div>
+            <div class="grid">
+                <div class="field"><label>رقم الموبايل</label><input type="tel" required></div>
+                <div class="field"><label>البريد الإلكتروني</label><input type="email" required></div>
+            </div>
+        </div>
+
+        <div class="section s-edu">
+            <div class="section-title" style="color: var(--edu-clr);">🎓 2. البيانات التعليمية</div>
+            <div class="grid">
+                <div class="field"><label>الجامعة</label><input type="text" required></div>
+                <div class="field"><label>الكلية</label><input type="text" required></div>
+            </div>
+            <div class="grid">
+                <div class="field"><label>القسم</label><input type="text"></div>
+                <div class="field"><label>التخصص العام</label><input type="text"></div>
+            </div>
+            <div class="grid">
+                <div class="field"><label>سنة التخرج</label><input type="number" min="1980" max="2026"></div>
+                <div class="field"><label>التقدير العام</label>
+                    <select><option>ممتاز</option><option>جيد جداً</option><option>جيد</option><option>مقبول</option></select>
+                </div>
+                <div class="field"><label>تقدير مادة التخصص</label><input type="text"></div>
+            </div>
+        </div>
+
+        <div class="section s-prog">
+            <div class="section-title" style="color: var(--prog-clr);">📋 3. بيانات البرنامج المطلوب</div>
+            <div class="grid">
+                <div class="field"><label>البرنامج</label>
+                    <select><option>دبلوم</option><option>ماجستير</option><option>دكتوراه</option></select>
+                </div>
+                <div class="field"><label>التخصص الدقيق</label><input type="text"></div>
+            </div>
+            <div class="grid">
+                <div class="field"><label>الكلية/المعهد الموجه له</label><input type="text"></div>
+                <div class="field"><label>نظام الدراسة</label>
+                    <select><option>ساعات معتمدة</option><option>نظام فصلي</option></select>
+                </div>
+            </div>
+        </div>
+
+        <div class="section s-work">
+            <div class="section-title" style="color: var(--work-color);">💼 4. بيانات العمل (إن وجد)</div>
+            <div class="grid">
+                <div class="field"><label>جهة العمل</label><input type="text"></div>
+                <div class="field"><label>الوظيفة</label><input type="text"></div>
+            </div>
+            <div class="field"><label>عنوان جهة العمل</label><input type="text"></div>
+        </div>
+
+        <div class="section s-docs">
+            <div class="section-title" style="color: var(--doc-clr);">📁 5. المستندات المطلوبة</div>
+            <div class="grid">
+                <div class="field"><label>صورة البطاقة</label><input type="file"></div>
+                <div class="field"><label>شهادة التخرج</label><input type="file"></div>
+            </div>
+            <div class="grid">
+                <div class="field"><label>بيان الدرجات</label><input type="file"></div>
+                <div class="field"><label>صورة شخصية</label><input type="file"></div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit">إرسال الطلب الآن</button>
+    </form>
+</div>
+
+<div id="success-overlay">
+    <div class="success-box">
+        <h2 style="color: var(--doc-clr);">✓ تم الإرسال</h2>
+        <p>شكراً لك! تم استلام طلب التقديم بنجاح وجاري مراجعة مستنداتك.</p>
+        <button onclick="location.reload()" style="background:#1e293b; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer;">إغلاق</button>
+    </div>
+</div>
+
+</body>
+</html>

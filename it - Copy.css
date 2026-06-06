@@ -1,0 +1,212 @@
+/* --- إعدادات الخط والألوان المطورة --- */
+:root {
+    /* تدرج احترافي من 3 ألوان: البنفسجي العميق، الأزرق الملكي، والتيل */
+    --bg-gradient: linear-gradient(45deg, #0a1c79 0%, #c1b4d0 46%, #7a88bf 100%);
+    --btn-gradient: linear-gradient(to right, #00b4db, #0083b0, #005c97);
+    --glass-bg: rgba(255, 255, 255, 0.85); /* خلفية زجاجية شفافة */
+    --text-color: #1a1a1a;
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden; /* لمنع ظهور شريط التمرير بسبب الأشكال الخلفية */
+    position: relative;
+}
+
+/* --- إضافة أشكال هندسية في الخلفية --- */
+body::before, body::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+}
+
+body::before {
+    width: 300px;
+    height: 300px;
+    background: #FFCC70;
+    top: -50px;
+    left: -50px;
+    animation: float 8s infinite alternate;
+}
+
+body::after {
+    width: 400px;
+    height: 400px;
+    background: #C850C0;
+    bottom: -100px;
+    right: -50px;
+    animation: float 10s infinite alternate-reverse;
+}
+
+@keyframes float {
+    from { transform: translate(0, 0); }
+    to { transform: translate(50px, 100px); }
+}
+
+/* --- الحاوية الأساسية بتأثير Glassmorphism --- */
+.container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px); /* تأثير تغبيش الزجاج */
+    -webkit-backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* إطار شفاف رقيق */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15); /* ظل ناعم وشفاف */
+    width: 90%;
+    max-width: 400px;
+    z-index: 1;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* --- تنسيق المدخلات --- */
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #444;
+    font-size: 14px;
+    padding-right: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 14px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+input:focus {
+    background: #fff;
+    border-color: #C850C0;
+    box-shadow: 0 5px 15px rgba(200, 80, 192, 0.2);
+    outline: none;
+}
+
+/* --- الأزرار --- */
+#update-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--btn-gradient);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 131, 176, 0.3);
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+}
+
+#update-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 131, 176, 0.5);
+    filter: brightness(1.1);
+}
+
+#update-btn:active {
+    transform: translateY(-1px);
+}
+
+.back-btn {
+    background: linear-gradient(to right, #11998e, #38ef7d) !important;
+    margin-top: 20px;
+}
+
+/* --- أيقونة النجاح --- */
+.check-icon {
+    font-size: 70px;
+    display: block;
+    margin-bottom: 15px;
+    text-align: center;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+}
+
+.success-title {
+    color: #333;
+    text-align: center;
+    font-size: 22px;
+}
+
+.success-text {
+    color: #666;
+    text-align: center;
+    line-height: 1.6;
+}
+body {
+    font-family: var(--main-font); /* تطبيق الخط على الصفحة بالكامل */
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+h2 {
+    font-family: var(--main-font);
+    font-weight: 800; /* خط عريض جداً للعناوين */
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+label {
+    font-family: var(--main-font);
+    font-weight: 500; /* خط متوسط للعناوين الجانبية */
+    display: block;
+    margin-bottom: 10px;
+    color: #444;
+    font-size: 14px;
+}
+
+input {
+    font-family: var(--main-font);
+    font-weight: 400; /* خط عادي للكتابة داخل الخانات */
+    width: 100%;
+    padding: 14px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    font-size: 15px;
+}
+
+#update-btn {
+    font-family: var(--main-font);
+    font-weight: 700; /* خط عريض للزرار ليكون واضحاً */
+    letter-spacing: 0.5px;
+    /* باقي خصائص الزرار كما هي */
+}

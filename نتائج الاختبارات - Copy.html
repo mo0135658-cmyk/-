@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نتائج الاختبارات - النظام الأكاديمي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --navy: #1e293b;         /* كحلي غامق رصين */
+        --navy-light: #334155;   /* كحلي فاتح */
+        --gray-light: #f1f5f9;   /* رصاصي فاتح جداً */
+        --gray-medium: #e2e8f0;  /* رصاصي متوسط للحدود */
+        --white: #ffffff;
+        --accent-blue: #3b82f6;  /* أزرق نقي للتنبيهات */
+    }
+
+    body {
+        font-family: 'Cairo', sans-serif;
+        background-color: var(--gray-light);
+        margin: 0;
+        padding: 20px;
+        color: var(--navy);
+    }
+
+    .container {
+        width: 95%;
+        max-width: 1050px;
+        margin: 30px auto;
+        background: var(--white);
+        padding: 0; /* سنستخدم الـ padding داخل الأقسام */
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        animation: fadeIn 0.7s ease-out;
+    }
+
+    /* رأس الصفحة بتصميم كحلي */
+    .header-bar {
+        background: var(--navy);
+        color: var(--white);
+        padding: 30px;
+        text-align: center;
+    }
+
+    .header-bar h1 {
+        margin: 0;
+        font-weight: 900;
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+    }
+
+    .main-content {
+        padding: 40px;
+    }
+
+    /* بيانات الطالب - تصميم بطاقات رصاصي */
+    .student-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+        margin-bottom: 40px;
+    }
+
+    .info-item {
+        background: var(--white);
+        border: 1px solid var(--gray-medium);
+        padding: 15px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        transition: 0.3s;
+    }
+
+    .info-item:hover {
+        border-color: var(--navy);
+        background: #fafafa;
+    }
+
+    .info-item label {
+        font-size: 11px;
+        color: #64748b;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    .info-item span {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--navy);
+    }
+
+    /* الجدول الكحلي والأبيض */
+    .results-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--gray-medium);
+    }
+
+    .results-table th {
+        background: var(--navy-light);
+        color: var(--white);
+        padding: 15px;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .results-table td {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid var(--gray-medium);
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .results-table tr:hover {
+        background-color: #f8fafc;
+    }
+
+    .status-pass {
+        color: #059669;
+        background: #ecfdf5;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 12px;
+    }
+
+    /* صندوق الخلاصة - تصميم رصاصي غامق وكحلي */
+    .gpa-summary {
+        margin-top: 30px;
+        background: var(--navy);
+        color: var(--white);
+        padding: 25px;
+        border-radius: 15px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .gpa-item { text-align: center; }
+    .gpa-item .title { display: block; font-size: 12px; opacity: 0.8; margin-bottom: 5px; }
+    .gpa-item .val { font-size: 1.4rem; font-weight: 900; color: var(--white); }
+
+    .notice {
+        margin-top: 25px;
+        padding: 15px;
+        background: var(--gray-light);
+        border-right: 4px solid var(--navy);
+        border-radius: 8px;
+        font-size: 13px;
+        color: var(--navy-light);
+        font-weight: 600;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+        .gpa-summary { flex-direction: column; }
+        .main-content { padding: 20px; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header-bar">
+        <h1>كشف التقديرات والنتائج النهائية</h1>
+    </div>
+
+    <div class="main-content">
+        <div class="student-grid">
+            <div class="info-item"><label>الاسم الكامل</label><span>أحمد محمد العلي</span></div>
+            <div class="info-item"><label>الرقم الجامعي</label><span>20241099</span></div>
+            <div class="info-item"><label>البرنامج</label><span>ماجستير تكنولوجيا التعليم</span></div>
+            <div class="info-item"><label>الفصل الدراسي</label><span>الأول - 2026</span></div>
+        </div>
+
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>المقرر الدراسي</th>
+                    <th>الدرجة</th>
+                    <th>التقدير</th>
+                    <th>الحالة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>مناهج البحث التربوي</td>
+                    <td>85</td>
+                    <td>جيد جداً</td>
+                    <td><span class="status-pass">ناجح ✓</span></td>
+                </tr>
+                <tr>
+                    <td>الإحصاء التربوي</td>
+                    <td>78</td>
+                    <td>جيد</td>
+                    <td><span class="status-pass">ناجح ✓</span></td>
+                </tr>
+                <tr>
+                    <td>تكنولوجيا التعليم</td>
+                    <td>90</td>
+                    <td>ممتاز</td>
+                    <td><span class="status-pass">ناجح ✓</span></td>
+                </tr>
+                <tr>
+                    <td>علم النفس التربوي</td>
+                    <td>65</td>
+                    <td>مقبول</td>
+                    <td><span class="status-pass">ناجح ✓</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="gpa-summary">
+            <div class="gpa-item">
+                <span class="title">المعدل التراكمي (GPA)</span>
+                <span class="val">3.20</span>
+            </div>
+            <div class="gpa-item">
+                <span class="title">التقدير العام</span>
+                <span class="val">جيد جداً</span>
+            </div>
+            <div class="gpa-item">
+                <span class="title">الساعات المعتمدة</span>
+                <span class="val">10 ساعات</span>
+            </div>
+        </div>
+
+        <div class="notice">
+            ⓘ ملاحظة: تعتبر هذه النتائج رسمية، وفي حال وجود أي اعتراض يمكن التقدم بطلب مراجعة خلال 72 ساعة.
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

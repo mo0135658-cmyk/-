@@ -1,0 +1,182 @@
+:root {
+    --primary-color: #102f9d;
+    --secondary-color: #2830a0;
+    --accent-color: #051135;
+    --glass-bg: rgba(255, 255, 255, 0.9);
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    margin: 0;
+    color: #333;
+    line-height: 1.1;
+}
+
+header {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color), var(--accent-color));
+    color: white;
+    padding: 10px 20px;
+    position: relative;
+    
+}
+a{
+text-decoration: none;
+color: inherit;
+}
+.card{
+text-decoration: none;
+color: inherit;
+display: block;}
+
+header {
+    /* الخلفية: تعتيم متدرج خفيف فوق صورة جامعة المنصورة (تربية نوعية) */
+    background: 
+                url('5769606964211027970_121.jpg');
+    background-size:70%;
+    background-position:center -10%; /* لضمان تمركز الصورة الرئيسية */
+    background-attachment: fixed; /* (اختياري) تأثير Parallax عند التمرير */
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 100px 10px; /* زيادة الـ Padding لجعل الشريط عريضاً وطويلاً */
+    position: relative;
+    overflow: hidden;
+    /* إزالة الـ clip-path إذا كنتِ تريدين شريطاً مستقيماً */
+    /* clip-path: polygon(0 0, 90% 0, 90% 90%, 0 90%); */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* ظل ناعم للشريط */
+    background-repeat: repeat; /* لضمان تكرار الصورة المصغرة */
+}
+
+/* إزالة الـ img القديمة لأننا جعلنا الصورة خلفية */
+header img {
+    display: none;
+}
+
+/* طبقة التعتيم (الآن مدمجة في الـ linear-gradient للخلفية) */
+.overlay {
+    display: none; /* لم نعد بحاجة إليها كعنصر منفصل */
+}
+
+header h1 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 3.5rem; /* تكبير العنوان ليتناسب مع حجم الشريط */
+    margin: 0;
+    position: relative;
+    z-index: 2;
+    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5); /* زيادة عمق الظل للنص */
+    animation: fadeInUp 1s ease-out; /* حركة دخول بسيطة */
+}
+
+header p {
+    font-size: 1.5rem; /* تكبير النص الوصفي */
+    font-weight: 300;
+    position: relative;
+    z-index: 2;
+    opacity: 0.95;
+    margin-top: 15px;
+    animation: fadeInUp 1s ease-out 0.3s backwards; /* حركة دخول بتأخير */
+}
+
+/* حركة بسيطة لظهور النص (Fade In) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+header h1 { margin: 0; font-size: 2.5rem; font-weight: 700; }
+
+   
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+    padding: 50px 2%;
+    margin-top: -20px; /* لرفع الكروت فوق الهيدر قليلاً */
+}
+
+.card {
+    background: var(--glass-bg);
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(131, 129, 129, 0.352);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    background: white;
+}
+
+.icon-box {
+    font-size: 40px;
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card h3 { font-size: 1.2rem; margin-bottom: 10px; color: #222; }
+.card p { font-size: 0.9rem; color: #555555; }
+
+.doctors {
+    padding: 80px 80px;
+    background: #f7f8fc;
+}
+
+.doctor-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 60px;
+    margin-top: 20px;
+}
+
+.doc-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.doctor-container img {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 5px 15px rgb(18, 90, 192);
+    transition: 0.3s;
+}
+
+.doctor-container img:hover { transform: rotate(5deg) scale(1.1); }
+
+.announcements {
+    padding: 60px 10%;
+}
+
+.announcements ul { list-style: none; padding: 0; }
+
+.announcements li {
+    background: white;
+    margin-bottom: 15px;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 6px rgba(130, 129, 129, 0.484);
+    border-right: 5px solid var(--secondary-color);
+    transition: 0.3s;
+}
+
+.announcements li i { color: var(--primary-color); }
+.announcements li:hover { transform: translateX(-10px); }

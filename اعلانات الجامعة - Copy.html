@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز الأخبار والقرارات الجامعية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0f172a;
+            --navy-light: #1e293b;
+            --accent: #3b82f6;
+            --soft-gray: #f8fafc;
+            --border: #e2e8f0;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f1f5f9;
+            background-image: radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.05) 0px, transparent 50%),
+                              radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.05) 0px, transparent 50%);
+            margin: 0;
+            padding: 20px;
+            color: var(--navy);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* رأس الصفحة المطور */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--navy);
+            margin: 0;
+            letter-spacing: -1px;
+        }
+
+        .page-header p {
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .badge {
+            background: var(--navy);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        /* شبكة الأخبار الذكية */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .news-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid var(--border);
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* تمييز الكارت الأول ليكون أكبر (Featured) */
+        .news-card:first-child {
+            grid-column: span 2;
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background: var(--soft-gray);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .news-card:first-child .icon-box {
+            background: rgba(255,255,255,0.1);
+            color: var(--accent);
+        }
+
+        .news-date {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .news-card:first-child .news-date { color: #94a3b8; }
+
+        .news-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .news-content {
+            font-size: 1rem;
+            color: #64748b;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .news-card:first-child .news-content { color: #cbd5e1; }
+
+        .read-more {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* الملاحظة السفلية */
+        .footer-note {
+            margin-top: 50px;
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px dashed var(--accent);
+            padding: 20px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--navy-light);
+        }
+
+        /* أنيميشن دخول */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* التجاوب مع الجوال */
+        @media (max-width: 1024px) {
+            .news-grid { grid-template-columns: 1fr 1fr; }
+            .news-card:first-child { grid-column: span 2; }
+        }
+
+        @media (max-width: 768px) {
+            .news-grid { grid-template-columns: 1fr; }
+            .news-card:first-child { grid-column: span 1; }
+            .page-header h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header">
+        <span class="badge">تحديثات 2026</span>
+        <h1>آخر الأخبار والقرارات الجامعية</h1>
+        <p>ابقَ على اطلاع دائم بكل ما يخص مسيرتك الأكاديمية</p>
+    </div>
+
+    <div class="news-grid">
+        <div class="news-card">
+            <div class="icon-box"><i class="fa-solid fa-bullhorn"></i></div>
+            <div class="news-date"><i class="fa-regular fa-calendar"></i> 15 مارس 2026</div>
+            <div class="news-title">قرار عاجل: تمديد فترة تسجيل المقررات للفصل الدراسي الأول</div>
+            <div class="news-content">حرصاً على مصلحة الطلاب، قررت إدارة الجامعة تمديد فترة التسجيل حتى 20 مارس 2026. يرجى من جميع الطلاب الانتهاء من تسجيل جداولهم قبل الموعد المحدد.</div>
+            <a href="#" class="read-more">التفاصيل الكاملة <i class="fa-solid fa-arrow-left"></i></a>
+        </div>
+
+        <div class="news-card">
+            <div class="icon-box"><i class="fa-solid fa-microscope"></i></div>
+            <div class="news-date"><i class="fa-regular fa-calendar"></i> 10 مارس 2026</div>
+            <div class="news-title">تحديثات خطة البحث للماجستير</div>
+            <div class="news-content">تنبيه هام لطلاب الدراسات العليا بضرورة اعتماد الخطط البحثية من قبل المشرفين قبل نهاية الشهر الجاري.</div>
+            <a href="#" class="read-more">رابط النماذج <i class="fa-solid fa-arrow-left"></i></a>
+        </div>
+
+        <div class="news-card">
+            <div class="icon-box"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+            <div class="news-date"><i class="fa-regular fa-calendar"></i> 05 مارس 2026</div>
+            <div class="news-title">جدولة الرسوم الدراسية</div>
+            <div class="news-content">تعديل مواعيد سداد الأقساط الدراسية للفصل الحالي. يمكنكم الاطلاع على الجدول الجديد عبر البوابة المالية.</div>
+            <a href="#" class="read-more">البوابة المالية <i class="fa-solid fa-arrow-left"></i></a>
+        </div>
+
+        <div class="news-card">
+            <div class="icon-box"><i class="fa-solid fa-pen-to-square"></i></div>
+            <div class="news-date"><i class="fa-regular fa-calendar"></i> 01 مارس 2026</div>
+            <div class="news-title">إعلان جداول الامتحانات النهائية</div>
+            <div class="news-content">تم رفع الجداول المبدئية للامتحانات الورقية والإلكترونية لجميع الأقسام. يرجى مراجعة القاعات والمواعيد.</div>
+            <a href="#" class="read-more">تحميل الجدول <i class="fa-solid fa-arrow-left"></i></a>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <i class="fa-solid fa-circle-info fa-2xl" style="color: var(--accent);"></i>
+        <div>
+            <strong>تذكير رسمي:</strong> جميع الأخبار المنشورة هنا هي المصدر الرسمي الوحيد لقرارات الإدارة. يرجى مراجعة الصفحة يومياً لتجنب فوات المواعيد الهامة.
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

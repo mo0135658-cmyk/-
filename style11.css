@@ -1,0 +1,93 @@
+.login-btn:hover { background: #e0e0e0; transform: scale(1.02); }
+
+        /* حالة الإخفاء */
+        .hidden {
+            display: none;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+/* إعدادات عامة */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* اختر الخط الذي تفضله */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background:url(5769606964211027969_121.jpg);
+    background-size: cover;
+    background-position: center 50%;
+    
+    
+}
+
+
+/* تنسيق المربع الأساسي */
+.login-container {
+    background: linear-gradient(to bottom, #123891, #717ab0); /* التدرج اللوني الأزرق كما في الصورة */
+    width: 360px; /* العرض التقريبي للمربع */
+    padding: 30px;
+    border-radius: 20px; /* الحواف المستديرة للمربع */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* ظل ناعم للمربع */
+    text-align: center;
+    color: white; /* لون النص داخل المربع */
+}
+
+/* تنسيق العنوان "تقديم" */
+.login-container h2 {
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+/* تنسيق مجموعات الإدخال */
+.input-group {
+    margin-bottom: 20px; /* مسافة بين كل خانة */
+}
+
+/* تنسيق خانات الإدخال */
+.input-group input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.4); /* إطار شبه شفاف */
+    background-color: rgba(255, 255, 255, 0.1); /* خلفية خفيفة جداً */
+    border-radius: 30px; /* حواف مستديرة جداً للخانات */
+    color: white; /* لون الكتابة داخل الخانة */
+    font-size: 16px;
+    text-align: right; /* محاذاة النص لليمين للغة العربية */
+    box-sizing: border-box; /* لضمان حساب الـ padding ضمن العرض */
+    transition: all 0.3s ease; /* تأثير ناعم عند التفاعل */
+}
+
+/* تنسيق النص المساعد داخل الخانة */
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* لون النص المساعد */
+}
+
+/* تنسيق الخانة عند الضغط عليها (Focus) */
+.input-group input:focus {
+    outline: none;
+    border-color: white; /* تغيير لون الإطار للأبيض الكامل */
+    background-color: rgba(255, 255, 255, 0.2); /* تفتيح الخلفية قليلاً */
+}
+
+/* تنسيق زر login */
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: white; /* لون الزر الأبيض */
+    color: #2a4c9c; /* لون النص داخل الزر (الأزرق) */
+    border: none;
+    border-radius: 30px; /* حواف مستديرة جداً للزر */
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease; /* تأثير ناعم عند التمرير */
+}
+
+/* تأثير عند تمرير الماوس فوق الزر */
+.login-btn:hover {
+    background-color: rgba(255, 255, 255, 0.8); /* تغيير طفيف في لون الزر */
+}
